@@ -32,7 +32,10 @@ export function getHighestSafeWindowContext(self = global.window.self) {
     return self;
   }
 
-  const getOrigin = href => href.match(/(.*\/\/.*?)(\/|$)/)[1];
+  const getOrigin = href => {
+    const originMatch = href.match(/(.*\/\/.*?)(\/|$)/);
+    return originMatch ? originMatch[1] : null;
+  };
 
   // If parent is the same origin, we can move up one context
   // Reference: https://stackoverflow.com/a/21965342/1601953
